@@ -40,7 +40,7 @@ IMT2020026 Vyom Sharma
 ================
 
 4.1 IMT2020025 Aniruddha Shailesh Chaudhari :
-    (a) IFD entries reading and extraction code.
+    (a) IFD entries reading (tiff_ifd_read.c and tiff_header.h) and extraction code.
     (b) assistance in makefile creation.
 4.2 IMT2020531 Saketh Gajawada :
     (a) assistance in IFD extraction and defining structures.
