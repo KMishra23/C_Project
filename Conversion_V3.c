@@ -3,7 +3,7 @@
 #include <math.h>
 #include "tiff_header.h"   /* Header for TIFF IFD structures and routines */
 
-#pragma pack (1)
+#pragma pack (1)//excludes unwanted padding
 
 typedef unsigned char WORD;
 typedef unsigned int DWORD;
@@ -31,7 +31,7 @@ struct BMP_Header {
         int Xres;
         int Yres;
 };
-
+//components of a pixel
 struct RGB {
     unsigned char blue;
     unsigned char green;
@@ -97,12 +97,12 @@ void opentiff(const char *filename, struct BMP_Header *bmphead) {
         TIFHEAD.Identifier = c; //reading one I or M is enough to read as same character is repeating II or MM
         if(c=='I')
         {
-            printf("Byte Order is Little Endian\n");
+            printf("Byte Order is Little Endian\n");//I indicates little endian
             endian_identifier = 0;
         }
         else
         {
-            printf("Byter Order is Big Endian\n");
+            printf("Byter Order is Big Endian\n");//M indicates big endian
             endian_identifier = 1;
         }
     }
@@ -154,6 +154,7 @@ void opentiff(const char *filename, struct BMP_Header *bmphead) {
     int image_data_size = height * width * 3; //*3 for RGB
     int image_data_offset;
     WORD* image_data = (WORD*)malloc((image_data_size) * sizeof(WORD)); //array that reads byte by byte data 
+    // malloc is used for dynamic memomry allocation of structures
     if(TIFHEAD.IFDOffset>8) //between the header and IFDOffset
     {
         image_data_offset = 8;
@@ -168,14 +169,14 @@ void opentiff(const char *filename, struct BMP_Header *bmphead) {
         fseek(fp, image_data_offset, SEEK_SET);
         for(i=0; i<(image_data_size) && (c=getc(fp)) !=EOF; i++)
         {
-            image_data[i] = c;
+            image_data[i] = c;//tiff image data getting stored in 1D array
         }
     }
    
     printf("IFD entry count: %d\n", number_of_IFDEntries);
     printf("%d %d\n",height,width);
     //read tiff
-    struct RGB pixels[height][width]; 
+    struct RGB pixels[height][width]; // Each element of pixels 2d array has a structure RGB which include three components red green blue
     fseek(fp,image_data_offset,SEEK_SET);
     int k = 0;
     for(int i = 0; i < height; i++) 
@@ -183,6 +184,8 @@ void opentiff(const char *filename, struct BMP_Header *bmphead) {
         //fread(pixels[i],3,width,fp);
         for(int j = 0; j < width; j++)
         {
+            //while taking tiff data into array ,for a given pixel three components gets stored adjacently
+            // so,ina group of three elements in tiff image data,first given red,then blue and then green
             pixels[i][j].red = image_data[k];
             pixels[i][j].green = image_data[k+1];
             pixels[i][j].blue = image_data[k+2];
@@ -199,48 +202,50 @@ void opentiff(const char *filename, struct BMP_Header *bmphead) {
 
     int bytesPerPixel = bmphead->bytes_per_pixel;
     FILE *outputFile  = fopen(filename,"wb");
+    //BM is a header field used to identify BMP and DIB file                     2 bytes
     const char *BM = "BM";
     fwrite(&BM[0], 1, 1, outputFile);
     fwrite(&BM[1], 1, 1, outputFile);
-    
+    //size of BMP file in bytes                                                  4 bytes
     int paddedRowSize = (width + 3)*3;
     int fileSize = paddedRowSize*height + 54;
     fwrite(&fileSize, 4, 1, outputFile);
-    
+    //reserved is set to 0 if an image is created manually                       4 bytes
     int reserved = 0x0000;
     fwrite(&reserved, 4, 1, outputFile);
-    
+    //offset(starting address) of the byte where image data(array) starts        4 bytes
     int dataOffset = 54;
     fwrite(&dataOffset, 4, 1, outputFile);
-
-    //*******INFO*HEADER******//
     
+    //*******BITMAP**INFORMATION**HEADER******//
+     //starts with writing the size of this header                               4 bytes
+    //default size od dib header is 40                                            
     int infoHeaderSize = 40;
     fwrite(&infoHeaderSize, 4, 1, outputFile);
-    
-    fwrite(&width, 4, 1, outputFile);
-    fwrite(&height, 4, 1, outputFile);
-    
+    //widtha and height indicates the length and breadth of the image file   4 + 4 bytes
+    fwrite(&width, 4, 1, outputFile);                                  
+    fwrite(&height, 4, 1, outputFile);           
+    //number of colour planes which is always 1                                  2 bytes
     short int planes = 1; 
     fwrite(&planes, 2, 1, outputFile);
-    
+    //space taken per pixel in bits which is actually colour depth of image      2 bytes                                        
     short int bitsPerPixel = bytesPerPixel * 8;
     fwrite(&bitsPerPixel, 2, 1, outputFile);
-    
+    //compression is assumed to be 0 as we take only uncompressed images         4 bytes
     int compression = 0;
     fwrite(&compression, 4, 1, outputFile);
-    
+    //imagesize is actually the size of raw bit map data                         4 bytes
     int imageSize = width*height*bytesPerPixel;
     fwrite(&imageSize, 4, 1, outputFile);
-    
+    //resolution is actually the no of pixel per meter along x and y direction 4+4 bytes 
     int resolutionX = 0x0000; 
     int resolutionY = 0x0000; 
     fwrite(&resolutionX, 4, 1, outputFile);
     fwrite(&resolutionY, 4, 1, outputFile);
-       
+    //no of colours in colour palette(default = 0)                               4 bytes
     int colorsUsed = 0;
     fwrite(&colorsUsed, 4, 1, outputFile);
-    
+    //number of important colours,0 if every co;our is important                 4 bytes
     int importantColors = 0;
     fwrite(&importantColors, 4, 1, outputFile);
 
@@ -261,7 +266,6 @@ void opentiff(const char *filename, struct BMP_Header *bmphead) {
 int main() {
     struct RGB *pixels;
     struct BMP_Header bmphead;
-
     opentiff("Tree.bmp",&bmphead);
     //writebmp("KBMP.bmp",bmphead,pixels);
 }
