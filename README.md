@@ -39,10 +39,12 @@ IMT2020026 Vyom Sharma
 4. Contributions
 ================
 
-4.1 IMT2020025 Aniruddha Shailesh Chaudhari
-    (a) IFD entries reading and extraction code
-    (b) assistance in makefile creation
-4.2
+4.1 IMT2020025 Aniruddha Shailesh Chaudhari :
+    (a) IFD entries reading and extraction code.
+    (b) assistance in makefile creation.
+4.2 IMT2020531 Saketh Gajawada :
+    (a) assistance in IFD extraction and defining structures.
+    (b) taking tiff image data and converting it into bmp image data.
 4.3
 4.4
 4.5
