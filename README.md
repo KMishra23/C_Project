@@ -39,7 +39,9 @@ IMT2020026 Vyom Sharma
 4. Contributions
 ================
 
-4.1 IFD entries reading and extraction code - Aniruddha Shailesh Chaudhari
+4.1 IMT2020025 Aniruddha Shailesh Chaudhari
+    (a) IFD entries reading and extraction code
+    (b) assistance in makefile creation
 4.2
 4.3
 4.4
