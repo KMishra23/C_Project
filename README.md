@@ -39,8 +39,12 @@ IMT2020026 Vyom Sharma
 4. Contributions
 ================
 
-4.1 
-4.2 IMT2020025 Aniruddha Shailesh Chaudhari :
+4.1 IMT2020535 Shreeya Manasvi Venneti
+    (a) Read and understood the TIFF file format. Explored different ways of reading the file.  
+    (b) Defined the general structures and struct for header on the basis of the TIFF file format. Wrote the code for reading the header of the TIFF file.  
+    (c) Wrote the code for reading the image/pixel data from the TIFF file into appropriate data structures. 
+    (d) Reorganised the logic of the code to support conversion and wrote additional code, so that it will aid in conversion of TIFF file to BMP file. 
+6.2 IMT2020025 Aniruddha Shailesh Chaudhari :
     (a) IFD entries reading (tiff_ifd_read.c and tiff_header.h) and extraction code.
     (b) assistance in makefile creation.
 4.3 IMT2020531 Saketh Gajawada :
