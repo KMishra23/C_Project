@@ -49,6 +49,7 @@ IMT2020026 Vyom Sharma
 4.4 IMT2020137 Kaushik Mishra:
     (a) Read and understood about both tiff and bmp files and mainly how pixel data is stored.
     (b) Conversion of image data obtained from tiff file to appropriate form that can be used to write to bmp file.
+    (c) Figured out what IFD Tags read from the tiff file are required to write the bmp header file. 
 4.5
 4.6
 
