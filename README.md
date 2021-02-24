@@ -39,18 +39,21 @@ IMT2020026 Vyom Sharma
 4. Contributions
 ================
 
-4.1 IMT2020025 Aniruddha Shailesh Chaudhari :
+4.1 
+4.2 IMT2020025 Aniruddha Shailesh Chaudhari :
     (a) IFD entries reading (tiff_ifd_read.c and tiff_header.h) and extraction code.
     (b) assistance in makefile creation.
-4.2 IMT2020531 Saketh Gajawada :
-    (a) assistance in IFD extraction and defining structures.
-    (b) taking tiff image data and converting it into bmp image data.
-4.3
+4.3 IMT2020531 Saketh Gajawada :
+    (a) read about mainly about tiff and pixel data conversion. 
+    (b) assistance in IFD(tags) extraction and defining structures for those tags.
+    (c) taking tiff image data and converting it into bmp image data.
 4.4 IMT2020137 Kaushik Mishra:
     (a) Read and understood about both tiff and bmp files and mainly how pixel data is stored.
     (b) Conversion of image data obtained from tiff file to appropriate form that can be used to write to bmp file.
     (c) Figured out what IFD Tags read from the tiff file are required to write the bmp header file. 
 4.5
-4.6
+4.6 IMT2020511 Sai Keerthan :
+    (a) forming a output bmp file using binary mode.
+    (b) makefile formation for this program.
 
 
