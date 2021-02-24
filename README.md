@@ -46,7 +46,9 @@ IMT2020026 Vyom Sharma
     (a) assistance in IFD extraction and defining structures.
     (b) taking tiff image data and converting it into bmp image data.
 4.3
-4.4
+4.4 IMT2020137 Kaushik Mishra:
+    (a) Read and understood about both tiff and bmp files and mainly how pixel data is stored.
+    (b) Conversion of image data obtained from tiff file to appropriate form that can be used to write to bmp file.
 4.5
 4.6
 
