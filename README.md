@@ -44,9 +44,12 @@ IMT2020026 Vyom Sharma
     (b) Defined the general structures and struct for header on the basis of the TIFF file format. Wrote the code for reading the header of the TIFF file.  
     (c) Wrote the code for reading the image/pixel data from the TIFF file into appropriate data structures. 
     (d) Reorganised the logic of the code to support conversion and wrote additional code, so that it will aid in conversion of TIFF file to BMP file. 
-6.2 IMT2020025 Aniruddha Shailesh Chaudhari :
-    (a) IFD entries reading (tiff_ifd_read.c and tiff_header.h) and extraction code.
-    (b) assistance in makefile creation.
+4.2 IMT2020025 Aniruddha Shailesh Chaudhari :
+    (a) Read TIFF v6 specifications for IFD details
+    (b) IFD entries reading and image attributes extraction code
+        Initial implementation - tiff_ifd_read.c and tiff_header.h
+        Final code incorporated into read_header.c
+    (c) makefile creation for this project.
 4.3 IMT2020531 Saketh Gajawada :
     (a) read about mainly about tiff and pixel data conversion. 
     (b) assistance in IFD(tags) extraction and defining structures for those tags.
@@ -58,6 +61,5 @@ IMT2020026 Vyom Sharma
 4.5
 4.6 IMT2020511 Sai Keerthan :
     (a) forming a output bmp file using binary mode.
-    (b) makefile formation for this program.
-
+    (b) assisted in makefile formation for this project.
 
